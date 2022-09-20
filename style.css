@@ -258,7 +258,10 @@ h3 {
     }
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 720px){
+    h1 {
+        font-size: var(--text-display-2);
+    }
     h2 {
         font-size: var(--text-xlg);
     }
@@ -494,22 +497,18 @@ li a:hover::after {
     .showcase-img{
         top: 0;
         height: 90%;
-        width: 80%;
     }
 }
 @media screen and (max-width: 500px) {
     .showcase-content {
         justify-content: center;
+        padding-bottom: 3rem;
     }
-    .showcase-text p {
+   .showcase-text p {
         margin-bottom: 4rem;
     }
     .showcase-img{
         height: 80%;
-    }
-
-    .showcase .btn {
-        margin-bottom: 3rem;
     }
 }
 
