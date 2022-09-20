@@ -434,9 +434,9 @@ li a:hover::after {
 /* Showcase */
 .showcase {
     background: var(--black);
-    height: 750px;
+    min-height: 750px;
     /* height: var(--app-height); */
-    /* height: 100vh; */
+    height: 100vh;
     display: flex;
     align-items: center;
 }
@@ -488,6 +488,9 @@ li a:hover::after {
     }
 }
 @media screen and (max-width: 720px) {
+    .showcase {
+        height: 750px;
+    }
     .showcase-img{
         top: 0;
         height: 90%;
