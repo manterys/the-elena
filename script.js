@@ -1,21 +1,32 @@
-// const appHeight = () => {
-//     const showCase = document.documentElement
-//     showCase.style.setProperty('--app-height', `${window.innerHeight}px`)
-// }
-// window.addEventListener('resize', appHeight)
-
-// appHeight()
-
-// Header
+// Menu Button
+const appMenuBtn = () => {
 const menuBtn = document.getElementById('menu-btn')
 const page = document.querySelector('.page')
 
 menuBtn.addEventListener('click', () => page.classList.toggle('menuActive'))
 
+window.addEventListener('resize', function() {
+    if (window.matchMedia('(min-width: 720px)').matches) {
+        if (page.classList.contains('menuActive')) page.classList.remove('menuActive')
+    }
+})
+
+const nav = document.querySelector('.nav')
+nav.querySelectorAll('.nav a').forEach(function(link) {
+    link.addEventListener("click", function(e) {
+        page.classList.remove('menuActive')
+    })
+})
+}
+
+appMenuBtn()
+
+
+// Sticky Header
+const appStickyHeader = () => {
 const header = document.getElementById('header')
 const showcase = document.getElementById('showcase')
 let triggerHeight
-
 triggerHeight = showcase.offsetHeight - 150;
 
 window.addEventListener('scroll', function () {
@@ -26,22 +37,13 @@ window.addEventListener('scroll', function () {
         header.classList.remove('scrolled')
     }
 })
+}
 
-const nav = document.querySelector('.nav')
+appStickyHeader()
 
-nav.querySelectorAll('.nav a').forEach(function(link) {
-    link.addEventListener("click", function(e) {
-        page.classList.remove('menuActive')
-    })
-})
-
-window.addEventListener('resize', function() {
-    if (window.matchMedia('(min-width: 720px)').matches) {
-        if (page.classList.contains('menuActive')) page.classList.remove('menuActive')
-    }
-});
 
 // Modal
+const appModal = () => {
 const modalBox = document.querySelector('.modal-box')
 const closed = document.querySelector('.modal-box svg')
 const img = document.querySelectorAll('.project')
@@ -67,8 +69,13 @@ modalBox.addEventListener('click', (e) => {
             modal[i].classList.remove('modalActive')
         }
 }})
+}
 
-// Translate Animation
+appModal()
+
+
+// Animation
+const appAnimation = () => {
 const animR = document.querySelectorAll('.animation-right')
 const animL = document.querySelectorAll('.animation-left')
 
@@ -88,7 +95,6 @@ function checkAnim() {
             anim.classList.remove('show')
         }
     })
-    console.log(triggerBottom)
     
     animL.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
@@ -100,8 +106,13 @@ function checkAnim() {
         }
     })
 }
+}
+
+appAnimation()
+
 
 // Button Top
+const appTopBtn = () => {
 const pxShow = 600;
 const btnTop = document.querySelector(".icon-up")
 if (window.scrollY >= pxShow) btnTop.classList.add("visible")
@@ -112,8 +123,13 @@ window.addEventListener('scroll', function() {
         btnTop.classList.remove("visible")
     }
 });
+}
+
+appTopBtn()
+
 
 // Move to
+const appMoveTo = () => {
 const easeFunctions = {
     easeInQuad: function (t, b, c, d) {
         t /= d;
@@ -149,3 +165,13 @@ const moveTo = new MoveTo({
 triggers.forEach(function(trigger) {
     moveTo.registerTrigger(trigger);
 });
+}
+
+appMoveTo()
+
+const body = document.body
+body.classList.add('ss-preload');
+        
+        window.addEventListener('load', function() {
+            body.classList.remove('ss-preload');
+            body.classList.add('ss-loaded');})
