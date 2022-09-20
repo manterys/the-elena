@@ -502,11 +502,11 @@ li a:hover::after {
         margin-bottom: 4rem;
     }
     .showcase-img{
-        height: 85%;
+        height: 80%;
     }
 
     .showcase .btn {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
     }
 }
 
