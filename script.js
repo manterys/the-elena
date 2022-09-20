@@ -1,10 +1,10 @@
-const appHeight = () => {
-    const showCase = document.documentElement
-    showCase.style.setProperty('--app-height', `${window.innerHeight}px`)
-}
-window.addEventListener('resize', appHeight)
+// const appHeight = () => {
+//     const showCase = document.documentElement
+//     showCase.style.setProperty('--app-height', `${window.innerHeight}px`)
+// }
+// window.addEventListener('resize', appHeight)
 
-appHeight()
+// appHeight()
 
 // Header
 const menuBtn = document.getElementById('menu-btn')
@@ -77,7 +77,7 @@ window.addEventListener('scroll', checkAnim)
 checkAnim()
 
 function checkAnim() {
-    const triggerBottom = window.innerHeight / 7 * 6
+    const triggerBottom = window.innerHeight / 1.1
     
     animR.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
@@ -88,6 +88,7 @@ function checkAnim() {
             anim.classList.remove('show')
         }
     })
+    console.log(triggerBottom)
     
     animL.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
