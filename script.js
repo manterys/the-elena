@@ -78,6 +78,7 @@ appModal()
 const appAnimation = () => {
 const animR = document.querySelectorAll('.animation-right')
 const animL = document.querySelectorAll('.animation-left')
+const animT = document.querySelectorAll('.animation-top')
 
 window.addEventListener('scroll', checkAnim)
 
@@ -97,6 +98,16 @@ function checkAnim() {
     })
     
     animL.forEach(anim => {
+        const animTop = anim.getBoundingClientRect().top
+        
+        if(animTop < triggerBottom) {
+            anim.classList.add('show')
+        } else {
+            anim.classList.remove('show')
+        }
+    })
+
+    animT.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         
         if(animTop < triggerBottom) {
