@@ -1,3 +1,11 @@
+const appHeight = () => {
+    const showCase = document.documentElement
+    showCase.style.setProperty('--app-height', `${window.innerHeight}px`)
+}
+window.addEventListener('resize', appHeight)
+
+appHeight()
+
 // Header
 const menuBtn = document.getElementById('menu-btn')
 const page = document.querySelector('.page')
@@ -69,7 +77,7 @@ window.addEventListener('scroll', checkAnim)
 checkAnim()
 
 function checkAnim() {
-    const triggerBottom = window.innerHeight / 5 * 4
+    const triggerBottom = window.innerHeight / 7 * 6
     
     animR.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
@@ -131,7 +139,7 @@ easeInOutCubic: function (t, b, c, d) {
 const triggers = document.querySelectorAll('.smoothscroll');
 
 const moveTo = new MoveTo({
-    tolerance: 50,
+    tolerance: 30,
     duration: 1200,
     easing: 'easeInOutCubic',
     container: window
