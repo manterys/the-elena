@@ -1,3 +1,22 @@
+// Loader
+const appLoader = () => {
+    const loader = document.querySelector('.loader')
+    const page = document.querySelector('.page')
+    
+    function loaded() {
+        setTimeout(() => {
+            loader.style.opacity = 0
+            loader.style.display = 'none'
+            
+            page.classList.add('loaded')
+            setTimeout(() => (page.style.opacity = 1), 800)
+        }, 1000)
+    }   
+    loaded()
+}
+
+appLoader()
+
 // Menu Button
 const appMenuBtn = () => {
 const menuBtn = document.getElementById('menu-btn')
@@ -79,6 +98,7 @@ const appAnimation = () => {
 const animR = document.querySelectorAll('.animation-right')
 const animL = document.querySelectorAll('.animation-left')
 const animT = document.querySelectorAll('.animation-top')
+const page = document.querySelector('.page')
 
 window.addEventListener('scroll', checkAnim)
 
@@ -90,7 +110,7 @@ function checkAnim() {
     animR.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         
-        if(animTop < triggerBottom) {
+        if(page.classList.contains('loaded') || animTop < triggerBottom) {
             anim.classList.add('show')
         } else {
             anim.classList.remove('show')
@@ -179,10 +199,3 @@ triggers.forEach(function(trigger) {
 }
 
 appMoveTo()
-
-const body = document.body
-body.classList.add('ss-preload');
-        
-        window.addEventListener('load', function() {
-            body.classList.remove('ss-preload');
-            body.classList.add('ss-loaded');})
