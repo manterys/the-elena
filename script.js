@@ -1,41 +1,58 @@
+// ---------------------
+// The-Elena Java Script
+// ---------------------
+
+// appLoader()
+// appMenuBtn()
+// appStickyHeader()
+// appModal()
+// appAnimation()
+// appMoveTo()
+
+
+// Global
+const page = document.querySelector('.page')
+
 // Loader
 const appLoader = () => {
+    const anima = document.querySelector('.animation-left')
     const loader = document.querySelector('.loader')
-    const page = document.querySelector('.page')
+    if (!loader) return
+    anima.classList.remove('show')
     
-    function loaded() {
+    function load() {
         setTimeout(() => {
             loader.style.opacity = 0
             loader.style.display = 'none'
             
-            page.classList.add('loaded')
+            page.style.display = 'flex'
             setTimeout(() => (page.style.opacity = 1), 800)
         }, 1000)
     }   
-    loaded()
+    load()
 }
 
-appLoader()
+
 
 // Menu Button
 const appMenuBtn = () => {
-const menuBtn = document.getElementById('menu-btn')
-const page = document.querySelector('.page')
+    const menuBtn = document.getElementById('menu-btn')
+    if(!menuBtn) return
 
-menuBtn.addEventListener('click', () => page.classList.toggle('menuActive'))
+    menuBtn.addEventListener('click', () => page.classList.toggle('menuActive'))
 
-window.addEventListener('resize', function() {
-    if (window.matchMedia('(min-width: 720px)').matches) {
-        if (page.classList.contains('menuActive')) page.classList.remove('menuActive')
-    }
-})
-
-const nav = document.querySelector('.nav')
-nav.querySelectorAll('.nav a').forEach(function(link) {
-    link.addEventListener("click", function(e) {
-        page.classList.remove('menuActive')
+    window.addEventListener('resize', function() {
+        if (window.matchMedia('(min-width: 720px)').matches) {
+            if (page.classList.contains('menuActive')) page.classList.remove('menuActive')
+        }
     })
-})
+
+    const nav = document.querySelector('.nav')
+    nav.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener("click", function(e) {
+            page.classList.remove('menuActive')
+        })
+    })
 }
 
 appMenuBtn()
@@ -43,19 +60,21 @@ appMenuBtn()
 
 // Sticky Header
 const appStickyHeader = () => {
-const header = document.getElementById('header')
-const showcase = document.getElementById('showcase')
-let triggerHeight
-triggerHeight = showcase.offsetHeight - 150;
+    const header = document.getElementById('header')
+    const showcase = document.getElementById('showcase')
+    let triggerHeight
+    if (!header && showcase) return
 
-window.addEventListener('scroll', function () {
-    let loc = window.scrollY
-    if (loc > triggerHeight) {
-        header.classList.add('scrolled')
-    } else {
-        header.classList.remove('scrolled')
-    }
-})
+    triggerHeight = showcase.offsetHeight - 150;
+
+    window.addEventListener('scroll', function () {
+        let loc = window.scrollY
+        if (loc > triggerHeight) {
+            header.classList.add('scrolled')
+        } else {
+            header.classList.remove('scrolled')
+        }
+    })
 }
 
 appStickyHeader()
@@ -63,31 +82,31 @@ appStickyHeader()
 
 // Modal
 const appModal = () => {
-const modalBox = document.querySelector('.modal-box')
-const closed = document.querySelector('.modal-box svg')
-const img = document.querySelectorAll('.project')
-const modal = document.querySelectorAll('.modal')
+    const modalBox = document.querySelector('.modal-box')
+    const closed = document.querySelector('.modal-box svg')
+    const img = document.querySelectorAll('.project')
+    const modal = document.querySelectorAll('.modal')
 
-img.forEach(img => img.addEventListener('click', (e)=> {
-    modalBox.classList.add('modalOpen')
-    img.lastElementChild.classList.add('modalActive')
-}  
-))
+    img.forEach(img => img.addEventListener('click', (e)=> {
+        modalBox.classList.add('modalOpen')
+        img.lastElementChild.classList.add('modalActive')
+    }  
+    ))
 
-closed.addEventListener('click', (e) => {
-    modalBox.classList.remove('modalOpen')
-        for(let i = 0; i < modal.length; i++) {
-            modal[i].classList.remove('modalActive')
-    }
-})
-
-modalBox.addEventListener('click', (e) => {
-    if (e.target == modalBox) {
+    closed.addEventListener('click', (e) => {
         modalBox.classList.remove('modalOpen')
-        for(let i = 0; i < modal.length; i++) {
-            modal[i].classList.remove('modalActive')
+            for(let i = 0; i < modal.length; i++) {
+                modal[i].classList.remove('modalActive')
         }
-}})
+    })
+
+    modalBox.addEventListener('click', (e) => {
+        if (e.target == modalBox) {
+            modalBox.classList.remove('modalOpen')
+            for(let i = 0; i < modal.length; i++) {
+                modal[i].classList.remove('modalActive')
+            }
+    }})
 }
 
 appModal()
@@ -95,22 +114,21 @@ appModal()
 
 // Animation
 const appAnimation = () => {
-const animR = document.querySelectorAll('.animation-right')
-const animL = document.querySelectorAll('.animation-left')
-const animT = document.querySelectorAll('.animation-top')
-const page = document.querySelector('.page')
+    const animR = document.querySelectorAll('.animation-right')
+    const animL = document.querySelectorAll('.animation-left')
+    const animT = document.querySelectorAll('.animation-top')
 
-window.addEventListener('scroll', checkAnim)
+window.addEventListener('scroll', anim)
 
-checkAnim()
+anim()
 
-function checkAnim() {
+function anim() {
     const triggerBottom = window.innerHeight / 1.1
     
     animR.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         
-        if(page.classList.contains('loaded') || animTop < triggerBottom) {
+        if(animTop < triggerBottom) {
             anim.classList.add('show')
         } else {
             anim.classList.remove('show')
@@ -140,20 +158,34 @@ function checkAnim() {
 }
 
 appAnimation()
+const test = () => {
 
+    const animm = document.querySelector('.animation-left')
+    animm.classList.remove('show')
+    setTimeout(() => (animm.classList.add('show')), 3000)
+
+    const animy = document.querySelector('.animation-right')
+    animy.classList.remove('show')
+    setTimeout(() => (animy.classList.add('show')), 2600)
+}
+
+appLoader()
+
+test()
 
 // Button Top
 const appTopBtn = () => {
-const pxShow = 600;
-const btnTop = document.querySelector(".icon-up")
-if (window.scrollY >= pxShow) btnTop.classList.add("visible")
-window.addEventListener('scroll', function() {
-    if (window.scrollY >= pxShow) {
-        if(!btnTop.classList.contains('visible')) btnTop.classList.add("visible")
-    } else {
-        btnTop.classList.remove("visible")
-    }
-});
+    const pxShow = 600;
+    const btnTop = document.querySelector(".icon-up")
+    if (!btnTop) return
+    if (window.scrollY >= pxShow) btnTop.classList.add("visible")
+    window.addEventListener('scroll', function() {
+        if (window.scrollY >= pxShow) {
+            if(!btnTop.classList.contains('visible')) btnTop.classList.add("visible")
+        } else {
+            btnTop.classList.remove("visible")
+        }
+    });
 }
 
 appTopBtn()
@@ -161,41 +193,41 @@ appTopBtn()
 
 // Move to
 const appMoveTo = () => {
-const easeFunctions = {
-    easeInQuad: function (t, b, c, d) {
-        t /= d;
-    return c * t * t + b;
-},
-easeOutQuad: function (t, b, c, d) {
-    t /= d;
-    return -c * t* (t - 2) + b;
-},
-easeInOutQuad: function (t, b, c, d) {
-    t /= d/2;
-    if (t < 1) return c/2*t*t + b;
-    t--;
-    return -c/2 * (t*(t-2) - 1) + b;
-},
-easeInOutCubic: function (t, b, c, d) {
-    t /= d/2;
-    if (t < 1) return c/2*t*t*t + b;
-    t -= 2;
-    return c/2*(t*t*t + 2) + b;
-}
-}
+    const easeFunctions = {
+        easeInQuad: function (t, b, c, d) {
+            t /= d
+        return c * t * t + b
+    },
+    easeOutQuad: function (t, b, c, d) {
+        t /= d
+        return -c * t* (t - 2) + b
+    },
+    easeInOutQuad: function (t, b, c, d) {
+        t /= d/2
+        if (t < 1) return c/2*t*t + b
+        t--
+        return -c/2 * (t*(t-2) - 1) + b
+    },
+    easeInOutCubic: function (t, b, c, d) {
+        t /= d/2
+        if (t < 1) return c/2*t*t*t + b
+        t -= 2
+        return c/2*(t*t*t + 2) + b
+    }
+    }
 
-const triggers = document.querySelectorAll('.smoothscroll');
+    const triggers = document.querySelectorAll('.smoothscroll')
 
-const moveTo = new MoveTo({
-    tolerance: 30,
-    duration: 1200,
-    easing: 'easeInOutCubic',
-    container: window
-}, easeFunctions);
+    const moveTo = new MoveTo({
+        tolerance: 30,
+        duration: 1200,
+        easing: 'easeInOutCubic',
+        container: window
+    }, easeFunctions)
 
-triggers.forEach(function(trigger) {
-    moveTo.registerTrigger(trigger);
-});
+    triggers.forEach(function(trigger) {
+        moveTo.registerTrigger(trigger)
+    })
 }
 
 appMoveTo()
