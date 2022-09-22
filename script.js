@@ -15,10 +15,9 @@ const page = document.querySelector('.page')
 
 // Loader
 const appLoader = () => {
-    const anima = document.querySelector('.animation-left')
     const loader = document.querySelector('.loader')
     if (!loader) return
-    anima.classList.remove('show')
+    
     
     function load() {
         setTimeout(() => {
@@ -118,11 +117,11 @@ const appAnimation = () => {
     const animL = document.querySelectorAll('.animation-left')
     const animT = document.querySelectorAll('.animation-top')
 
-window.addEventListener('scroll', anim)
+    window.addEventListener('scroll', anim)
 
-anim()
+    anim()
 
-function anim() {
+    function anim() {
     const triggerBottom = window.innerHeight / 1.1
     
     animR.forEach(anim => {
@@ -148,30 +147,33 @@ function anim() {
     animT.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         
+        
         if(animTop < triggerBottom) {
             anim.classList.add('show')
         } else {
             anim.classList.remove('show')
         }
     })
-}
+    }
 }
 
-appAnimation()
-const test = () => {
-
+const appResetAnimation = () => {
+    const anima = document.querySelector('.animation-top')
+    anima.classList.remove('show')
+    
     const animm = document.querySelector('.animation-left')
     animm.classList.remove('show')
     setTimeout(() => (animm.classList.add('show')), 3000)
-
+    
     const animy = document.querySelector('.animation-right')
     animy.classList.remove('show')
     setTimeout(() => (animy.classList.add('show')), 2600)
 }
 
 appLoader()
+appAnimation()
+appResetAnimation()
 
-test()
 
 // Button Top
 const appTopBtn = () => {

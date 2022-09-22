@@ -132,14 +132,11 @@ img {
     width: 100%;
     transition: opacity 3s ease;
 }
-/* .page.loaded {
-    display: flex;
-} */
 
 /* Translate Animation */
 .animation-left, .animation-right, .animation-top {
     opacity: 0;
-    transition: all 1.2s ease;
+    transition: var(--transition-animation);
 }
 .animation-left {
     transform: translateX(150px);
@@ -153,12 +150,6 @@ img {
 .show {
     opacity: 1;
     transform: translateY(0);
-}
-.showcase .animation-right.show {
-    transition: all 1.2s ease;
-}
-.showcase .animation-left.show {
-    transition: all 1.2s ease;
 }
 
 /* Preloader */
