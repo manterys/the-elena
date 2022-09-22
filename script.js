@@ -3,10 +3,10 @@
 // ---------------------
 
 // appLoader()
-// appMenuBtn()
-// appStickyHeader()
-// appModal()
 // appAnimation()
+// appStickyHeader()
+// appMenuBtn()
+// appModal()
 // appMoveTo()
 
 
@@ -24,13 +24,70 @@ const appLoader = () => {
             loader.style.opacity = 0
             loader.style.display = 'none'
             
-            page.style.display = 'flex'
-            setTimeout(() => (page.style.opacity = 1), 800)
-        }, 1000)
+            page.classList.add('loaded')
+            // page.style.display = 'flex'
+            setTimeout(() => (page.style.opacity = 1), 1000)
+        }, 1200)
     }   
     load()
 }
 
+appLoader()
+
+// Animation
+const appAnimation = () => {
+    const animR = document.querySelector('.animation-right')
+    const animL = document.querySelector('.animation-left')
+    const animT = document.querySelectorAll('.animation-top')
+
+    setTimeout(() => (animR.classList.add('show')), 2600)
+    setTimeout(() => (animL.classList.add('show')), 3000)
+
+    window.addEventListener('scroll', anim)
+
+    anim()
+
+    function anim() {
+    const triggerBottom = window.innerHeight / 1.1
+    
+    animT.forEach(anim => {
+        const animTop = anim.getBoundingClientRect().top
+        // Reset Animation Top
+        anim.classList.remove('show')
+        
+        if(animTop < triggerBottom) {
+            anim.classList.add('show')
+        } else {
+            anim.classList.remove('show')
+        }
+    })
+    }
+}
+
+appAnimation()
+
+
+// Sticky Header
+const appStickyHeader = () => {
+    const header = document.getElementById('header')
+    const showcase = document.getElementById('showcase')
+    let triggerHeight
+    if (!header && showcase) return
+
+    triggerHeight = showcase.offsetHeight - 150;
+
+    window.addEventListener('scroll', function () {
+        let loc = window.scrollY
+        if (loc > triggerHeight) {
+            header.classList.add('scrolled')
+        } else {
+            header.classList.remove('scrolled')
+        }
+    })
+    console.log(triggerHeight)
+}
+
+appStickyHeader()
 
 
 // Menu Button
@@ -55,28 +112,6 @@ const appMenuBtn = () => {
 }
 
 appMenuBtn()
-
-
-// Sticky Header
-const appStickyHeader = () => {
-    const header = document.getElementById('header')
-    const showcase = document.getElementById('showcase')
-    let triggerHeight
-    if (!header && showcase) return
-
-    triggerHeight = showcase.offsetHeight - 150;
-
-    window.addEventListener('scroll', function () {
-        let loc = window.scrollY
-        if (loc > triggerHeight) {
-            header.classList.add('scrolled')
-        } else {
-            header.classList.remove('scrolled')
-        }
-    })
-}
-
-appStickyHeader()
 
 
 // Modal
@@ -111,68 +146,7 @@ const appModal = () => {
 appModal()
 
 
-// Animation
-const appAnimation = () => {
-    const animR = document.querySelectorAll('.animation-right')
-    const animL = document.querySelectorAll('.animation-left')
-    const animT = document.querySelectorAll('.animation-top')
 
-    window.addEventListener('scroll', anim)
-
-    anim()
-
-    function anim() {
-    const triggerBottom = window.innerHeight / 1.1
-    
-    animR.forEach(anim => {
-        const animTop = anim.getBoundingClientRect().top
-        
-        if(animTop < triggerBottom) {
-            anim.classList.add('show')
-        } else {
-            anim.classList.remove('show')
-        }
-    })
-    
-    animL.forEach(anim => {
-        const animTop = anim.getBoundingClientRect().top
-        
-        if(animTop < triggerBottom) {
-            anim.classList.add('show')
-        } else {
-            anim.classList.remove('show')
-        }
-    })
-
-    animT.forEach(anim => {
-        const animTop = anim.getBoundingClientRect().top
-        
-        
-        if(animTop < triggerBottom) {
-            anim.classList.add('show')
-        } else {
-            anim.classList.remove('show')
-        }
-    })
-    }
-}
-
-const appResetAnimation = () => {
-    const anima = document.querySelector('.animation-top')
-    anima.classList.remove('show')
-    
-    const animm = document.querySelector('.animation-left')
-    animm.classList.remove('show')
-    setTimeout(() => (animm.classList.add('show')), 3000)
-    
-    const animy = document.querySelector('.animation-right')
-    animy.classList.remove('show')
-    setTimeout(() => (animy.classList.add('show')), 2600)
-}
-
-appLoader()
-appAnimation()
-appResetAnimation()
 
 
 // Button Top

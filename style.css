@@ -126,11 +126,15 @@ img {
 
 /* Page */
 .page {
-    display: none;
-    opacity: 0;
+    display: flex;
     flex-direction: column;
+    opacity: 0;
     width: 100%;
-    transition: opacity 3s ease;
+}
+
+.page.loaded {
+    opacity: 1;
+    transition: opacity 4s ease .4s;
 }
 
 /* Translate Animation */
@@ -450,7 +454,7 @@ li a:hover::after {
 
 .showcase-text {
     align-self: flex-end;
-    z-index: 1;
+    z-index: 2;
     padding: 0 20px;
 }
 
@@ -467,6 +471,7 @@ li a:hover::after {
     background: url('images/showcase.jpg') no-repeat right center / cover;
     height: 96%;
     width: 50%;
+    z-index: 1;
 }
 
 .showcase-img::before{
