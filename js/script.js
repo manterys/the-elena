@@ -25,7 +25,6 @@ const appLoader = () => {
             loader.style.display = 'none'
             
             page.classList.add('loaded')
-            // page.style.display = 'flex'
             setTimeout(() => (page.style.opacity = 1), 1000)
         }, 1200)
     }   
@@ -53,13 +52,14 @@ const appAnimation = () => {
     animT.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         // Reset Animation Top
-        anim.classList.remove('show')
+        // anim.classList.remove('show')
         
         if(animTop < triggerBottom) {
             anim.classList.add('show')
-        } else {
-            anim.classList.remove('show')
-        }
+        } 
+        // else {
+        //     anim.classList.remove('show')
+        // }
     })
     }
 }
@@ -146,10 +146,7 @@ const appModal = () => {
 appModal()
 
 
-
-
-
-// Button Top
+// Button Scroll Top
 const appTopBtn = () => {
     const pxShow = 600;
     const btnTop = document.querySelector(".icon-up")
