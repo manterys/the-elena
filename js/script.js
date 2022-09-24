@@ -39,8 +39,8 @@ const appAnimation = () => {
     const animL = document.querySelector('.animation-left')
     const animT = document.querySelectorAll('.animation-top')
 
-    setTimeout(() => (animR.classList.add('show')), 2600)
-    setTimeout(() => (animL.classList.add('show')), 3000)
+    // setTimeout(() => (animR.classList.add('show')), 2600)
+    // setTimeout(() => (animL.classList.add('show')), 3000)
 
     window.addEventListener('scroll', anim)
 
@@ -52,7 +52,7 @@ const appAnimation = () => {
     animT.forEach(anim => {
         const animTop = anim.getBoundingClientRect().top
         // Reset Animation Top
-        // anim.classList.remove('show')
+        anim.classList.remove('show')
         
         if(animTop < triggerBottom) {
             anim.classList.add('show')

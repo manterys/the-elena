@@ -125,7 +125,8 @@ img {
     font-size: var(--fs-sm);
     letter-spacing: 3px;
     color: var(--white);
-    background: var(--btn-color);
+    border: 1px solid var(--white);
+    background: none;
     transition: var(--transition-0_3);
 }
 .btn-black {
@@ -176,7 +177,7 @@ h1 {
 h2 {
     font-size: var(--fs-display-1);
     line-height: 1.3;
-    margin-bottom: var(--space-1_5);
+    margin-bottom: var(--space-1);
 }
 h3 {
     font-size: var(--fs-lg);
@@ -280,6 +281,7 @@ h3 {
 }
 .scrolled {
     background: var(--black);
+    height: 50px;
 }
 
 /* Logo */
@@ -289,6 +291,10 @@ h3 {
 .logo img {
     width: 40px;
     height: 100%;
+    transition: var(--transition-0_3);
+}
+.scrolled .logo img {
+    width: 30px;
 }
 
 /* Navigation */
@@ -369,12 +375,6 @@ li a:hover::after {
 
 /* Media Header */
 @media screen and (max-width: 720px) {
-    .header {
-        height: 60px;
-    }
-    .logo img {
-        width: 30px;
-    }
     .menu-btn {
         display: block;
     }
@@ -499,6 +499,7 @@ li a:hover::after {
 /* About */
 .about {
     background: var(--gray-5);
+    /* height: 900px; */
 }
 .about-content {
     display: flex;
@@ -507,6 +508,7 @@ li a:hover::after {
     background: url('images/about.jpg') no-repeat center center / cover;
     width: 50%;
     height: 900px;
+    /* height: 110%; */
 }
 .about-text-container {
     display: flex;
@@ -515,7 +517,7 @@ li a:hover::after {
     align-items: center;
 }
 .about-text {
-    height: 80%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -527,21 +529,21 @@ li a:hover::after {
 .about-text h2::before {
     content: '';
     position: absolute;
-    bottom: -50px;
-    left: 10px;
+    bottom: -30px;
+    left: 4px;
     width: 100px;
     height: 2px;
     background: var(--black);
 }
 .about-text p {
     font-size: var(--fs-md);
+    margin-bottom: 1rem;
 }
 
 /* Media About */
 @media screen and (max-width: 1020px) {
     .about-content {
         flex-direction: column;
-
     }
     .about-img, .about-text-container {
         width: 100%;
@@ -641,6 +643,7 @@ li a:hover::after {
     height: 80%;
 }
 .modal-img {
+    margin-top: 1.5rem;
     width: 100%;
     height: 80%;
 }
